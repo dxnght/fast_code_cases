@@ -1,0 +1,86 @@
+// adding filter func to the existing table, created with Bootstrap.
+// it's only small update in customer's code (as he wanted)
+// dataTable.bootstrap.min.css was rewritten with adding few classes (see below)
+
+
+<!-- some code -->
+
+
+function otherfilter() {
+  const min = parseFloat( $('#min').val());
+  const max = parseFloat( $('#max').val());
+  const e = document.getElementById('filter1');
+  const ddvalue = e.value;
+  if (ddvalue === '2') {
+    $('#myTable2 tbody tr').each(function() {
+   	let priceStr = this.cells[2].innerText.replace(',','')
+   	const priceInt = parseFloat(priceStr) || 0;
+     if ( ( isNaN( min ) && isNaN( max )) ||
+         ( isNaN( min ) && priceInt <= max ) ||
+         ( priceInt >= min  && isNaN( max )) ||
+         ( priceInt >= min  && priceInt <= max )) {
+        $(this).show()
+     } else {
+     	$(this).hide()
+     }   
+   })
+   } else if (ddvalue === '3') {
+    $('#myTable2 tbody tr').each(function() {
+   	let priceStr = this.cells[8].innerText.replace(',','')
+   	const priceInt = parseFloat(priceStr) || 0;
+     if ( ( isNaN( min ) && isNaN( max )) ||
+         ( isNaN( min ) && priceInt <= max ) ||
+         ( priceInt >= min  && isNaN( max )) ||
+         ( priceInt >= min   && priceInt <= max )) {
+        $(this).show()
+     } else {
+        $(this).hide()
+     }   
+   })
+   } else if (ddvalue === '4') {
+   $('#myTable2 tbody tr').each(function() {
+   	let priceStr = this.cells[3].innerText.replace(',','')
+   	const priceInt = parseFloat(priceStr) || 0;
+     if ( ( isNaN( min ) && isNaN( max )) ||
+         ( isNaN( min ) && priceInt <= max ) ||
+         ( priceInt >= min  && isNaN( max )) ||
+         ( priceInt >= min   && priceInt <= max )) {
+        $(this).show()
+     } else {
+        $(this).hide()
+     }   
+   })
+   } else if (ddvalue === '5') {
+   $('#myTable2 tbody tr').each(function() {
+   	let priceStr = this.cells[9].innerText.replace(',','')
+   	const priceInt = parseFloat(priceStr) || 0;
+     if ( ( isNaN( min ) && isNaN( max )) ||
+         ( isNaN( min ) && priceInt <= max ) ||
+         ( priceInt >= min  && isNaN( max )) ||
+         ( priceInt >= min   && priceInt <= max )) {
+        $(this).show()
+     } else {
+        $(this).hide()
+     }   
+   })
+   }
+  }
+</script>
+
+<script type="text/javascript">
+   $(document).ready(function() {
+    $('#myTable2 thead tr th').each(function() {
+				let name = this.outerText
+				if (name === 'Name') {
+					$(this).removeClass('sorting').addClass('special')
+          // special - added manually class that changes style of the element and it's ::after pseudoclass
+          // .... tr th .special(need to be added and initialized) && .special:after{content:none; opacity: 0}
+				} else if (name === 'Max Supply') {
+					$(this).removeClass('sorting').addClass('special')
+				}
+			})
+	})
+</script>
+
+
+<!-- some code --> 
